@@ -176,7 +176,7 @@ void gamerender()
 	Arrow.render(Arrow.getX(), Arrow.getY(), NULL, angle_arrow, NULL, SDL_FLIP_NONE);
 	if (press_mouse)
 	{
-		gun_fire_effect.setPos(Arrow.getX() - (gun_fire_effect.getWidth() - Arrow.getWidth()) / 2, Arrow.getY() - (gun_fire_effect.getHeight() - Arrow.getHeight()) / 2);
+		gun_fire_effect.setPos(Arrow.getX() + Arrow.getWidth() / 2 - gun_fire_effect.getWidth()/2, Arrow.getY() + Arrow.getHeight() / 2 - gun_fire_effect.getHeight() / 2);
 		gun_fire_effect.render(gun_fire_effect.getX(), gun_fire_effect.getY(), NULL, angle_arrow, NULL, SDL_FLIP_NONE);
 		press_mouse = false;
 	}
@@ -230,21 +230,16 @@ void menu_mode()
 	}
 	restart.render(restart.getX(), restart.getY(), NULL, 0, NULL, SDL_FLIP_NONE);
 
-	string tmp_string = "PLAY";
-	Font.loadFromRenderedText(tmp_string, 0, 0, 0);
-	how_to_play_title[0].setPos((SCREEN_WIDTH - how_to_play_title[0].getWidth()) / 2 - 320, (SCREEN_HEIGHT - how_to_play_title[0].getHeight()) / 2 - 75);
+
+	how_to_play_title[0].setPos(619, 378);
 	how_to_play_title[0].render(how_to_play_title[0].getX(), how_to_play_title[0].getY());
-	Font.render(how_to_play_title[0].getX() + (how_to_play_title[0].getWidth() - Font.getWidth()) / 2, how_to_play_title[0].getY() + (how_to_play_title[0].getHeight() - Font.getHeight()) / 2);
 
-	tmp_string = "EXIT";
-	Font.loadFromRenderedText(tmp_string, 0, 0, 0);
-	how_to_play_title[1].setPos((SCREEN_WIDTH - how_to_play_title[1].getWidth()) / 2 - 320, how_to_play_title[0].getY() + (how_to_play_title[0].getHeight() + 20) * 2);
+	how_to_play_title[1].setPos(619, 474);
 	how_to_play_title[1].render(how_to_play_title[1].getX(), how_to_play_title[1].getY());
-	Font.render(how_to_play_title[1].getX() + (how_to_play_title[1].getWidth() - Font.getWidth()) / 2, how_to_play_title[1].getY() + (how_to_play_title[1].getHeight() - Font.getHeight()) / 2);
 
-	tmp_string = "YOUR HIGHEST SCORE: " + to_string(highest_score);
+	string tmp_string = to_string(highest_score);
 	Font.loadFromRenderedText(tmp_string, 0, 0, 0);
-	Font.render((SCREEN_WIDTH - Font.getWidth()) / 2, 170);
+	Font.render( 800, 344);
 
 
 	music_menu.render(music_menu.getX(), music_menu.getY());
@@ -255,11 +250,11 @@ void music_config()
 	if (music_flag == true) music_flag = false;
 		else music_flag = true;
 	if (music_flag == true)
-		if (music_menu.loadFromFile("assets/image/music-on.png") == false) {
+		if (music_menu.loadFromFile("assets/image/music_on_1.png") == false) {
 			cout << "Failed to load music-on!" << endl;
 		}
 	if (music_flag == false)
-		if (music_menu.loadFromFile("assets/image/music-off.png") == false) {
+		if (music_menu.loadFromFile("assets/image/music_off_1.png") == false) {
 			cout << "Failed to load music-off!" << endl;
 		}
 }

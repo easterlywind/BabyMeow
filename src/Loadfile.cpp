@@ -12,7 +12,7 @@ bool init()
 		cout << "Warning: Linear texture filtering not enabled!" << endl;
 	}
 
-	gWindow = SDL_CreateWindow("RunawayCat", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+	gWindow = SDL_CreateWindow("BabyMeow", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 	if (gWindow == NULL)
 	{
 		cout << "Window coundn't not be created! SDL error: " << SDL_GetError() << endl;
@@ -118,20 +118,20 @@ bool loadMedia() {
 		success = false;
 	}
 
-	if (music_menu.loadFromFile("assets/image/music-on.png") == false)
+	if (music_menu.loadFromFile("assets/image/music_on_1.png") == false)
 	{
 		cout << "Failed to load music-menu image" << endl;
 		success = false;
 	}
 
 
-	if (how_to_play_title[0].loadFromFile("assets/image/title.png") == false)
+	if (how_to_play_title[0].loadFromFile("assets/image/play_1.png") == false)
 	{
 		cout << "Failed to load how-to-play-menu image" << endl;
 		success = false;
 	}
 
-	if (how_to_play_title[1].loadFromFile("assets/image/title.png") == false)
+	if (how_to_play_title[1].loadFromFile("assets/image/exit_1.png") == false)
 	{
 		cout << "Failed to load how-to-play-menu image" << endl;
 		success = false;
@@ -149,20 +149,13 @@ bool loadMedia() {
 		success = false;
 	}
 
-	music_menu.setPos(SCREEN_WIDTH - music_menu.getWidth() - 20, 20);
+	music_menu.setPos(1185, 27);
 	return_button.setPos(20, 20);
 	//Open the font
 	gFont = TTF_OpenFont("assets/fonts/Minecraft.ttf", 24);
 	if (gFont == NULL)
 	{
 		printf("Failed to load lazy font! SDL_ttf Error: %s\n", TTF_GetError());
-		success = false;
-	}
-
-	//Render text
-	if (!Font.loadFromRenderedText("RunawayCat?", 0, 0, 0))
-	{
-		printf("Failed to render text texture!\n");
 		success = false;
 	}
 
@@ -214,8 +207,8 @@ bool loadMedia() {
 		cout << "Failed to load can't shoot effect" << endl;
 		success = false;
 	}
-	SDL_Surface* icon1=IMG_Load("assets/image/pate.png");
-    SDL_SetWindowIcon(gWindow,icon1);
+	SDL_Surface* logo = IMG_Load("assets/image/pate.png");
+    SDL_SetWindowIcon(gWindow,logo);
 
 	return success;
 }

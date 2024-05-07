@@ -40,6 +40,7 @@ int main(int argc, char* args[])
 							quit = true;
 							GAME_OVER = true;
 						}
+						
 						if (e.type == SDL_MOUSEBUTTONDOWN)
 						{
 							SDL_GetMouseState(&x_mouse, &y_mouse);
@@ -55,6 +56,26 @@ int main(int argc, char* args[])
 							{
 								quit = true;
 								GAME_OVER = true;
+							}
+						}
+						else
+						{
+							SDL_GetMouseState(&x_mouse, &y_mouse);
+							if (checkCollision(x_mouse, y_mouse, how_to_play_title[0]))
+							{
+								how_to_play_title[0].loadFromFile("assets/image/play_2.png");
+							}
+							else
+							{
+								how_to_play_title[0].loadFromFile("assets/image/play_1.png");
+							}
+							if (checkCollision(x_mouse, y_mouse, how_to_play_title[1]))
+							{
+								how_to_play_title[1].loadFromFile("assets/image/exit_2.png");
+							}
+							else
+							{
+								how_to_play_title[1].loadFromFile("assets/image/exit_1.png");
 							}
 						}
 					}
