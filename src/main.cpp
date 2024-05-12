@@ -29,8 +29,8 @@ int main(int argc, char* args[])
 			while (quit == false)
 			{
 				//MENU_MODE
-				Music_sound = Mix_LoadMUS("assets/music/music-menu.mp3");
-				Mix_PlayMusic(Music_sound, -1);
+				Music_sound = Mix_LoadMUS("assets/music/meow.mp3");
+			    Mix_PlayMusic(Music_sound, -1);	
 				while (GAME_OVER == true && quit == false)
 				{
 					while (SDL_PollEvent(&e) != 0)

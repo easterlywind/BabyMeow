@@ -42,7 +42,6 @@ extern Uint32 startTime;
 extern float angle_arrow;
 extern LTexture Arrow;
 extern LTexture gun_fire_effect;
-extern LTexture bullet_image;
 extern Enermy treasure;
 
 extern Mix_Music* Music_sound;
@@ -61,7 +60,6 @@ extern bool press_mouse;
 extern LTexture music_menu;
 extern LTexture how_to_play_title[2];
 extern LTexture return_button;
-extern LTexture score_image;
 
 extern bool	music_flag;
 

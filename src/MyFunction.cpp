@@ -70,11 +70,11 @@ void initialize()
 {
 	srand(time(0));
 
-	//if (Mix_PausedMusic()) Mix_ResumeMusic();
 	Mix_FreeMusic(Music_sound);
 	Music_sound = NULL;
-	Music_sound = Mix_LoadMUS("assets/music/music.mp3");
+	Music_sound = Mix_LoadMUS("assets/music/hay.mp3");
 	if (music_flag == true && GAME_OVER == false) Mix_PlayMusic(Music_sound, -1);
+
 
 	SDL_Surface* icon = IMG_Load("assets/image/popcat2_mini.png");
 	SDL_Cursor* cursor = SDL_CreateColorCursor(icon, 0, 0);
@@ -96,7 +96,6 @@ void initialize()
 	dog.setPos(rand() % (SCREEN_WIDTH - dog.getWidth()), -dog.getHeight());
 	dog2.setPos(rand() % (SCREEN_WIDTH - dog2.getWidth()), -dog2.getHeight());
 	Arrow.setPos((SCREEN_WIDTH - Arrow.getWidth()) / 2, (SCREEN_HEIGHT - Arrow.getHeight()) / 2);
-	bullet_image.setPos((SCREEN_WIDTH - bullet_image.getWidth()) / 2 - 15, score_image.getHeight() + 20);
 	//Treasure
 	treasure.setVelocity(0, 1);
 	treasure.setPos(rand() % (SCREEN_WIDTH - treasure.getWidth()), -treasure.getHeight() - 20);
@@ -112,7 +111,7 @@ void gamecalculator()
 
 	if (checkCollision(cat, treasure))
 	{
-		if (treasure_armor == 0)
+		if (treasure_armor == 1)
 		{
 			Mix_PlayChannel(-1, cat_eat_sound, 0);
 			Mix_PlayChannel(-1, Ting_sound, 0);
@@ -139,7 +138,7 @@ void gamecalculator()
 	dog2.move();
 	treasure.move();
 
-	Arrow.setPos(cat.getX() - (Arrow.getWidth() - cat.getWidth()) / 2, cat.getY() - (Arrow.getHeight() - cat.getHeight()) / 2);
+	Arrow.setPos(cat.getX() - (Arrow.getWidth() - cat.getWidth()) / 2 - 18, cat.getY() - (Arrow.getHeight() - cat.getHeight()) / 2 + 14);
 	angle_arrow = getAngle(x_mouse, y_mouse, Arrow.getX() + Arrow.getWidth() / 2, Arrow.getY() + Arrow.getHeight() / 2);
 
 	if (checkCollision(cat, dog) || checkCollision(cat, dog2))
@@ -162,7 +161,7 @@ void gamecalculator()
 			cout << "Failed to load cat_cry image" << endl;
 		Mix_PauseMusic();
 		Mix_PlayChannel(-1, Lose_sound, 0);
-		Music_sound = Mix_LoadMUS("assets/music/music-menu.mp3");
+		Music_sound = Mix_LoadMUS("assets/music/meow.mp3");
 	}
 }
 
@@ -173,35 +172,33 @@ void gamerender()
 	pate.render(pate.getX(), pate.getY(), NULL, 0, NULL, SDL_FLIP_NONE);
 	dog.render(dog.getX(), dog.getY(), NULL, 0, NULL, SDL_FLIP_NONE);
 	dog2.render(dog2.getX(), dog2.getY(), NULL, 0, NULL, SDL_FLIP_NONE);
-	Arrow.render(Arrow.getX(), Arrow.getY(), NULL, angle_arrow, NULL, SDL_FLIP_NONE);
 	if (press_mouse)
 	{
-		gun_fire_effect.setPos(Arrow.getX() + Arrow.getWidth() / 2 - gun_fire_effect.getWidth()/2, Arrow.getY() + Arrow.getHeight() / 2 - gun_fire_effect.getHeight() / 2);
-		gun_fire_effect.render(gun_fire_effect.getX(), gun_fire_effect.getY(), NULL, angle_arrow, NULL, SDL_FLIP_NONE);
+		SDL_GetMouseState(&x_mouse, &y_mouse);
+		gun_fire_effect.render(x_mouse , y_mouse, NULL, angle_arrow, NULL, SDL_FLIP_NONE);
 		press_mouse = false;
 	}
 
 	treasure.render(treasure.getX(), treasure.getY());
 	cat.render(cat.getX(), cat.getY(), NULL, 0, NULL, SDL_FLIP_NONE);
+	Arrow.render(Arrow.getX(), Arrow.getY(), NULL, angle_arrow, NULL, SDL_FLIP_NONE);
 	if (GAME_OVER) {
 		highest_score = max(highest_score, Score);
 		game_over_image.render((SCREEN_WIDTH - game_over_image.getWidth()) / 2, (SCREEN_HEIGHT - game_over_image.getHeight()) / 2, NULL, 0, NULL, SDL_FLIP_NONE);
 	}
 
-	bullet_image.render(bullet_image.getX(), bullet_image.getY());
 
 	cout_score = ": ";
 	cout_score += to_string(bullet_count);
 	Font.loadFromRenderedText(cout_score, 0, 0, 0);
-	Font.render(bullet_image.getX() + bullet_image.getWidth() + 10, bullet_image.getY() + (bullet_image.getHeight() - Font.getHeight()) / 2);
+	Font.render(SCREEN_WIDTH / 2 - 35 , 100);
 
 	cout_score = ": ";
 	cout_score += to_string(Score);
 	Font.loadFromRenderedText(cout_score, 0, 0, 0);
-	Font.render((SCREEN_WIDTH - score_image.getWidth() - Font.getWidth()) / 2 + score_image.getWidth() + 5, 20 + (score_image.getHeight() - Font.getHeight()) / 2);
-	score_image.render((SCREEN_WIDTH - score_image.getWidth() - Font.getWidth()) / 2, 20);
+	Font.render(SCREEN_WIDTH / 2 - 35, 32);
 
-	string tmp_string = "" + to_string(treasure_armor);
+	string tmp_string = to_string(treasure_armor);
 	if (treasure_armor == 0)
 	{
 		Font.loadFromRenderedText(tmp_string, 255, 0, 0);
@@ -239,7 +236,7 @@ void menu_mode()
 
 	string tmp_string = to_string(highest_score);
 	Font.loadFromRenderedText(tmp_string, 0, 0, 0);
-	Font.render( 800, 344);
+	Font.render( 796, 334);
 
 
 	music_menu.render(music_menu.getX(), music_menu.getY());
@@ -258,3 +255,5 @@ void music_config()
 			cout << "Failed to load music-off!" << endl;
 		}
 }
+
+

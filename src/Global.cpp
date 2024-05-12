@@ -37,7 +37,6 @@ string cout_score;
 
 LTexture Arrow;
 LTexture gun_fire_effect;
-LTexture bullet_image;
 Enermy treasure;
 
 Mix_Music* Music_sound = NULL;
@@ -59,7 +58,6 @@ Uint32 tmp_time = 0;
 LTexture music_menu;
 LTexture how_to_play_title[2];
 LTexture return_button;
-LTexture score_image;
 
 bool music_flag = true;
 

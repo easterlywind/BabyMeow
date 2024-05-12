@@ -100,12 +100,6 @@ bool loadMedia() {
 		success = false;
 	}
 
-	if (bullet_image.loadFromFile("assets/image/bullet.png") == false)
-	{
-		cout << "Failed to load bullet image" << endl;
-		success = false;
-	}
-
 	if (treasure.loadFromFile("assets/image/treasure.png") == false)
 	{
 		cout << "Failed to load treasure image" << endl;
@@ -143,16 +137,11 @@ bool loadMedia() {
 		success = false;
 	}
 
-	if (score_image.loadFromFile("assets/image/score.png") == false)
-	{
-		cout << "Failed to load score image" << endl;
-		success = false;
-	}
 
 	music_menu.setPos(1185, 27);
 	return_button.setPos(20, 20);
 	//Open the font
-	gFont = TTF_OpenFont("assets/fonts/Minecraft.ttf", 24);
+	gFont = TTF_OpenFont("assets/fonts/Muli-LightItalic.ttf", 26);
 	if (gFont == NULL)
 	{
 		printf("Failed to load lazy font! SDL_ttf Error: %s\n", TTF_GetError());
@@ -160,7 +149,7 @@ bool loadMedia() {
 	}
 
 	//Load music
-	Music_sound = Mix_LoadMUS("assets/music/music.mp3");
+	Music_sound = Mix_LoadMUS("assets/music/meow.mp3");
 	if (Music_sound == NULL) {
 		cout << "Failed to load Music sound" << endl;
 		success = false;
@@ -207,7 +196,8 @@ bool loadMedia() {
 		cout << "Failed to load can't shoot effect" << endl;
 		success = false;
 	}
-	SDL_Surface* logo = IMG_Load("assets/image/pate.png");
+	//Load icon window
+	SDL_Surface* logo = IMG_Load("assets/image/logo.png");
     SDL_SetWindowIcon(gWindow,logo);
 
 	return success;
@@ -224,13 +214,11 @@ void close() {
 	Font.free();
 	Arrow.free();
 	restart.free();
-	bullet_image.free();
 	treasure.free();
 	music_menu.free();
 	how_to_play_title[0].free();
 	how_to_play_title[1].free();
 	return_button.free();
-	score_image.free();
 
 	Mix_FreeMusic(Music_sound);
 	Music_sound = NULL;
