@@ -199,7 +199,7 @@ bool loadMedia() {
 	//Load icon window
 	SDL_Surface* logo = IMG_Load("assets/image/logo.png");
     SDL_SetWindowIcon(gWindow,logo);
-
+	SDL_FreeSurface(logo);
 	return success;
 }
 

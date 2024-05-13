@@ -19,7 +19,7 @@ COMPILER_FLAGS = -w -Wl,-subsystem,windows
 LINKER_FLAGS = -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer
 
 # OBJ_NAME specifies the name of our executable
-OBJ_NAME = main
+OBJ_NAME = BabyMeow
 
 # This is the target that compiles our executable
 all : 

@@ -68,7 +68,7 @@ bool checkCollision(int& mousex, int& mousey, LTexture& tmpp)
 
 void initialize()
 {
-	srand(time(0));
+	//srand(time(0));
 
 	Mix_FreeMusic(Music_sound);
 	Music_sound = NULL;
@@ -244,8 +244,7 @@ void menu_mode()
 
 void music_config()
 {
-	if (music_flag == true) music_flag = false;
-		else music_flag = true;
+	music_flag = !music_flag;
 	if (music_flag == true)
 		if (music_menu.loadFromFile("assets/image/music_on_1.png") == false) {
 			cout << "Failed to load music-on!" << endl;
