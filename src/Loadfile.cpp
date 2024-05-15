@@ -34,7 +34,7 @@ bool init()
 	}
 
 	//Initialize SDL_mixer
-	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+	if (Mix_OpenAudio(44100 , MIX_DEFAULT_FORMAT, 2, 4096) < 0)
 	{
 		cout << "SDL_mixer could not initialize! SDL_mixer Error: " << Mix_GetError() << endl;
 		return false;
